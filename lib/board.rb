@@ -1,5 +1,5 @@
 # lib/board.rb
-require './lib/box'
+require './lib/box.rb'
 require 'pry'
 
 class Board
@@ -54,8 +54,8 @@ class Board
 
 
 end
-# game = Board.new
-# game.print_board
+game = Board.new
+game.print_board
 
 # ===========
 # . 1 2 3 4
