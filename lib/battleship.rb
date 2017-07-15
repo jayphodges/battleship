@@ -7,35 +7,33 @@ require 'pry'
 class Battleship
 
   def initialize
-    @a1 = Node.new('a1'), @a2 = Node.new('a2'), @a3 = Node.new('a3'), @a4 = Node.new('a4')
-    @b1 = Node.new('b1'), @b2 = Node.new('b2'), @b3 = Node.new('b3'), @b4 = Node.new('b4')
-    @c1 = Node.new('c1'), @c2 = Node.new('c2'), @c3 = Node.new('c3'), @c4 = Node.new('c4')
-    @d1 = Node.new('d1'), @d2 = Node.new('d2'), @d3 = Node.new('d3'), @d4 = Node.new('d4')
   end
 
   def intro_prompt
-    puts "Welcome to BATTLESHIP"
-    puts
-    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    print "Welcome to BATTLESHIP"
+    print "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
     # puts ""
   end
 
   def game_start
-    intro
-    input = gets.chomp
+    puts(intro_prompt)
+    intro_menu
   end
 
   def intro_menu
+    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    input = get_response
     case input
       when "p" || "P"
         # call game start method
       when "i" || "I"
-        # call instructions
+        instructions
+        intro_menu
       when "q" || "Q"
         exit!
       else
-        puts "Clearly that wasn't an option"
-        puts ""
+        puts "Clearly that wasn't an option\n\n"
+        intro_menu
     end
   end
 
@@ -49,9 +47,15 @@ class Battleship
     puts "Enter the squares for the two-unit ship: "
   end
 
-  def instructions
+  def get_response
+    gets.chomp
+  end
 
+  def instructions
+    puts "The instructions are a lie\n\n"
   end
 
 
 end
+game = Battleship.new
+game.intro_menu
