@@ -7,16 +7,15 @@ require 'pry'
 class Battleship
 
   def initialize
+    @board = Board.new
   end
 
   def intro_prompt
-    print "Welcome to BATTLESHIP"
-    print "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-    # puts ""
+    puts "\n\nWelcome to BATTLESHIP\n\n\n"
   end
 
   def game_start
-    puts(intro_prompt)
+    intro_prompt
     intro_menu
   end
 
@@ -25,7 +24,8 @@ class Battleship
     input = get_response
     case input
       when "p" || "P"
-        # call game start method
+        binding.pry
+        intro_menu
       when "i" || "I"
         instructions
         intro_menu
@@ -58,4 +58,4 @@ class Battleship
 
 end
 game = Battleship.new
-game.intro_menu
+game.game_start

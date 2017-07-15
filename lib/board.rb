@@ -1,26 +1,26 @@
 # lib/board.rb
-require './lib/node'
+require './lib/box'
 require 'pry'
 
 class Board
 
   def initialize
-    @a1 = Node.new('a1')
-    @a2 = Node.new('a2')
-    @a3 = Node.new('a3')
-    @a4 = Node.new('a4')
-    @b1 = Node.new('b1')
-    @b2 = Node.new('b2')
-    @b3 = Node.new('b3')
-    @b4 = Node.new('b4')
-    @c1 = Node.new('c1')
-    @c2 = Node.new('c2')
-    @c3 = Node.new('c3')
-    @c4 = Node.new('c4')
-    @d1 = Node.new('d1')
-    @d2 = Node.new('d2')
-    @d3 = Node.new('d3')
-    @d4 = Node.new('d4')
+    @a1 = Box.new
+    @a2 = Box.new
+    @a3 = Box.new
+    @a4 = Box.new
+    @b1 = Box.new
+    @b2 = Box.new
+    @b3 = Box.new
+    @b4 = Box.new
+    @c1 = Box.new
+    @c2 = Box.new
+    @c3 = Box.new
+    @c4 = Box.new
+    @d1 = Box.new
+    @d2 = Box.new
+    @d3 = Box.new
+    @d4 = Box.new
     @a1.p1_hit = true
     @a2.p1_hit = true
     @a2.p2_ship = true
