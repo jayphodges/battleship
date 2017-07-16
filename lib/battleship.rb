@@ -1,7 +1,7 @@
 require './lib/ai'
 require './lib/board'
 require './lib/box'
-require './lib/ships'
+require './lib/ship'
 require 'pry'
 
 class Battleship

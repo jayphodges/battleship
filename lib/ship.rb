@@ -8,14 +8,13 @@ require 'pry'
 class Ship
 
   def valid_letter(letter)
-    letter.upcase
     valid = ['A', 'B', 'C', 'D']
     valid.any? {|x| x==letter}
   end
 
   def valid_number(number)
     valid = ['1', '2', '3', '4']
-    valid.any? {|x| x==letter}
+    valid.any? {|x| x==number}
   end
 
   def letter_down(letter)
@@ -38,6 +37,28 @@ class Ship
     a == b - 1 || a == b + 1
   end
 
+  def vertical_horizontal(a1, a2, b1, b2)
+    (a1 == b1) || (a2 == b2)
+  end
+
+  def two_unit_ship_input(input)
+    # expected input ["A1","A2"]
+
+    adjacent_letter(input[0][0], input[1][0])
+    adjacent_number(input[0][1], input[1][1])
+
+  end
+
+  def convert_to_pairs(input)
+    input.scan(/../)
+  end
+
+  def format_input(input)
+    input.upcase!
+    input.gsub!(/[\s,]/ ,"")
+    input.scan(/../)
+  end
+
 end
-ship = Ship.new
-binding.pry
+# ship = Ship.new
+# binding.pry
