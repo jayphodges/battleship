@@ -1,6 +1,6 @@
 require './lib/ai'
 require './lib/board'
-require './lib/node'
+require './lib/box'
 require './lib/ships'
 require 'pry'
 
@@ -10,12 +10,20 @@ class Battleship
     @board = Board.new
   end
 
-  def intro_prompt
-    puts "\n\nWelcome to BATTLESHIP\n\n\n"
+  def banner
+    system "clear"
+    puts " ____        _   _   _       _____ _     _       "
+    puts "|  _ \\      | | | | | |     / ____| |   (_)      "
+    puts "| |_) | __ _| |_| |_| | ___| (___ | |__  _ _ __  "
+    puts "|  _ < / _` | __| __| |/ _ \\\\___ \\| '_ \\| | '_ \\ "
+    puts "| |_) | (_| | |_| |_| |  __/____) | | | | | |_) |"
+    puts "|____/ \\__,_|\\__|\\__|_|\\___|_____/|_| |_|_| .__/ "
+    puts "                                          | |    "
+    puts "                                          |_|  "
   end
 
   def game_start
-    intro_prompt
+    banner
     intro_menu
   end
 
@@ -52,7 +60,20 @@ class Battleship
   end
 
   def instructions
-    puts "The instructions are a lie\n\n"
+    system "clear"
+    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    puts "Welcome to the game of BattleShip! The purpose of the game is to sink"
+    puts "your opponents battleships while yours stay afloat. You will start the"
+    puts "game by placing your ships on the board vertically or horizontally and"
+    puts "your opponent will do the same. Once the game starts you have to find"
+    puts "your opponents ships by taking turns guessing a position till you get"
+    puts "a hit."
+    puts "\n\n\nThe first player to successfully sink all of their opponents ships wins!"
+    puts "\n\nPress return to exit to the menu"
+    input = get_response
+    if input == ""
+      game_start
+    end
   end
 
 
