@@ -5,7 +5,7 @@ require 'pry'
 require 'minitest/autorun'
 require 'minitest/emoji'
 
-class BoxTest < Minitest::Test
+class ShipTest < Minitest::Test
 
   def setup
     @ship = Ship.new

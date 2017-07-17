@@ -41,24 +41,53 @@ class Ship
     (a1 == b1) || (a2 == b2)
   end
 
-  def two_unit_ship_input(input)
+  def three_unit_adjacency(first, second, third)
+    adjacent_letters(first,second) && adjacent_letter(second,third)
+  end
+
+  def two_unit_ship_input(user_input)
     # expected input ["A1","A2"]
-
-    adjacent_letter(input[0][0], input[1][0])
-    adjacent_number(input[0][1], input[1][1])
-
+    input = format_input(user_input)
+    binding.pry
+    if input.count == 2
+      puts "Incorrect number of coordinates"
+      # returns to game start_prompt
+      # return false
+    # elsif
+    # else
+    end
   end
 
-  def convert_to_pairs(input)
-    input.scan(/../)
+
+  def three_unit_ship_input(user_input)
+    input = format_input(user_input)
+    if input.count != 2
+      puts "Incorrect number of coordinates"
+      # returns to game start_prompt
+    elsif !three_unit_adjacency
+      puts "Incorrect placement"
+      # returns to game start_prompt
+    else
+      puts "Can't have two ships in the same space"
+      # returns to game start_prompt
+    # else
+    #   # inserts data into board / box
+    end
   end
+
+  # def convert_to_pairs(input)
+  #   input.scan(/../)
+  # end
 
   def format_input(input)
-    input.upcase!
-    input.gsub!(/[\s,]/ ,"")
-    input.scan(/../)
+    formatted_input = input.gsub!(/[\s,]/ ,"")
+    coords = formatted_input.upcase
+
+    coords.scan(/../).sort
+    # binding.pry
   end
 
 end
-# ship = Ship.new
-# binding.pry
+ship = Ship.new
+ship.two_unit_ship_input("a1 c1, b1")
+binding.pry

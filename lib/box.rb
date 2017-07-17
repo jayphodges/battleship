@@ -15,7 +15,8 @@ class Box
 
   def icon?
     if @p1_hit && @p2_ship
-      "\u26DD".encode('utf-8')
+      "H"
+      # "\u26DD".encode('utf-8')
     elsif @p1_hit && !@p2_ship
       "M"
     else
