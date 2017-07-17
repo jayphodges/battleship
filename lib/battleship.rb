@@ -1,7 +1,7 @@
 require './lib/ai'
 require './lib/board'
 require './lib/box'
-# require './lib/ship'
+require './lib/ship'
 require 'pry'
 
 class Battleship
@@ -22,6 +22,10 @@ class Battleship
     puts "                                               |_|  "
   end
 
+  def waiting
+    sleep(0.05)
+  end
+
   def game_start
     banner
     puts "\n\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
@@ -39,7 +43,8 @@ class Battleship
         exit!
       else
         puts "Clearly that wasn't an option"
-        intro_menu
+        sleep(1)
+        game_start
     end
   end
 
@@ -50,11 +55,22 @@ class Battleship
     puts "three units long.\n\n"
     puts "The grid has A1 at the top left and D4 at the bottom right.\n\n"
     puts @board.print_board
-    puts "Enter the squares for the two-unit ship: "
+    puts "\n\nPress return once ready."
     input = get_response
     if input == ""
-      game_start
+      unit_entry
+    # elsif
+    #   game_start
+    # end
     end
+  end
+
+  def two_unit_entry
+    banner
+    puts "\n\n"
+    puts @board.print_board
+    puts "\n\nEnter the squares for the two-unit ship:"
+    input = get_response
   end
 
   def get_response
@@ -80,4 +96,6 @@ class Battleship
 
 end
 game = Battleship.new
+# @board = Board.new
+# binding.pry
 game.game_start

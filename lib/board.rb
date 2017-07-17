@@ -28,6 +28,12 @@ class Board
     @a1.p1_hit = true
     @a2.p1_hit = true
     @a2.p2_ship = true
+    @a3.p1_hit = true
+    @a4.p1_hit = true
+  end
+
+  def a1
+    @a1
   end
 
   def return_board
@@ -35,7 +41,7 @@ class Board
   end
 
   def border
-    puts "  ==========="
+    puts " ==========="
   end
 
   def header
