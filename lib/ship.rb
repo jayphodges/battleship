@@ -21,7 +21,7 @@ class Ship
     (letter.codepoints.first - 1).chr
   end
 
-  def letter_up(letter)
+  def character_up(letter)
     (letter.codepoints.first + 1).chr
   end
 
@@ -30,7 +30,7 @@ class Ship
   end
 
   def adjacent_units(a, b)
-    a == character_down(b) || a == letter_up(b)
+    a == character_down(b) || a == character_up(b)
   end
 
   # def adjacent_numbers(a, b)

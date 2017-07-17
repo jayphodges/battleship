@@ -45,9 +45,8 @@ class Computer
      def go_up(input)
        second_coordinate = @ship.character_up(input[0])
        if @ship.valid_letter(second_coordinate)
-         binding.pry
+         input + second_coordinate + input[1]
        else
-         binding.pry
          go_adjacent(input)
        end
      end
@@ -55,10 +54,8 @@ class Computer
      def go_down(input)
        second_coordinate = @ship.character_down(input[0])
        if @ship.valid_letter(second_coordinate)
-        binding.pry
-         # valid combination, push coordinates
+        input + second_coordinate + input[1]
        else
-        binding.pry
          go_adjacent(input)
        end
      end
@@ -66,9 +63,8 @@ class Computer
      def go_left(input)
        second_coordinate = @ship.character_down(input[1])
        if @ship.valid_number(second_coordinate)
-         binding.pry
+         input + input[0] + second_coordinate
        else
-         binding.pry
          go_adjacent(input)
        end
      end
@@ -76,14 +72,15 @@ class Computer
      def go_right(input)
        second_coordinate = @ship.character_up(input[1])
        if @ship.valid_number(second_coordinate)
-        binding.pry
+        input + input[0] + second_coordinate
          # valid combination, push coordinates
        else
-        binding.pry
-         go_adjacent(input)
+        go_adjacent(input)
        end
      end
 end
+
 cpu = Computer.new
-cpu.create_two_unit_ship
-binding.pry
+10.times do
+  puts cpu.create_two_unit_ship
+end
