@@ -1,5 +1,5 @@
-require 'simplecov'
-SimpleCov.start
+# require 'simplecov'
+# SimpleCov.start
 require './lib/ship'
 require 'pry'
 require 'minitest/autorun'
