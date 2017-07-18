@@ -10,6 +10,8 @@ class Computer
     #              "c1", "c2", "c3", "c4",
     #              "d1", "d2", "d3", "d4"]
     @ship = Ship.new
+    @ship_short = []
+    @ship_medium = []
   end
 
   def available
@@ -19,26 +21,63 @@ class Computer
      "d1", "d2", "d3", "d4"]
    end
 
+   def create_ships
+     create_two_unit_ship
+     binding.pry
+     create_three_unit_ship
+   end
+
    def create_two_unit_ship
      coord = coordinate_generator
-     go_adjacent(coord)
+     second_coordinate = go_adjacent(coord)
+     third_coordinate = go_adjacent(coord)
+     if second_coordinate == third_coordinate ||
+   end
+
+   def create_three_unit_ship
+     coord = coordinate_generator
+     binding.pry
+     if @ship_short.any? {|x| x == coord}
+       create_three_unit_ship
+     else
+       second_coordinate = go_adjacent(coord)
+       third_coordinate = go_adjacent(coord)
+       binding.pry
+     end
+   end
+
+   def three_unit_ship_comparator (second_coordinate, third_coordinate)
+     second_coordinate == third_coordinate ||
+     @ship_short.any? {|x| x == second_coordinate} ||
+     @ship_short.any? {|x| x == third_coordinate}
+   end
+
    end
 
    def coordinate_generator
      ('a'..'d').to_a.sample + ('1'..'4').to_a.sample
    end
 
+   def place_short_ship(input)
+     formatted_coordinates = @ship.split_and_sort(input)
+     @ship_short = formatted_coordinates
+   end
+
    def go_adjacent(coord)
      input = rand(4)
      case input
      when 0
-       go_up(coord)
+      ship = go_up(coord)
+      place_short_ship(ship)
      when 1
-       go_down(coord)
+      ship = go_down(coord)
+      place_short_ship(ship)
      when 2
-       go_left(coord)
+      ship = go_down(coord)
+      place_short_ship(ship)
      when 3
-       go_right(coord)
+      ship = go_up(coord)
+      place_short_ship(ship)
      end
    end
 
@@ -81,6 +120,7 @@ class Computer
 end
 
 cpu = Computer.new
-10.times do
-  puts cpu.create_two_unit_ship
-end
+cpu.create_ships
+# 100.times do
+#   puts cpu.create_two_unit_ship
+# end

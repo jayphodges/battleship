@@ -8,7 +8,7 @@ require 'pry'
 class Ship
 
   def valid_letter(letter)
-    valid = ['A', 'B', 'C', 'D']
+    valid = ['a', 'b', 'c', 'd']
     valid.any? {|x| x==letter}
   end
 
@@ -84,11 +84,16 @@ class Ship
 
   def format_input(input)
     formatted_input = input.gsub!(/[\s,]/ ,"")
-    coords = formatted_input.upcase
+    binding.pry
+    coords = formatted_input.downcase
     coords.scan(/../).sort
     # binding.pry
   end
 
+  def split_and_sort(input)
+    input.scan(/../).sort
+  end
+  
 end
 # ship = Ship.new
 # ship.two_unit_ship_input("a1 c1, b1")
