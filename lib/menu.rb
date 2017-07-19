@@ -10,7 +10,7 @@ class Menu
     @board = Board.new
     @ship = Ship.new
     @short_ship = []
-    @medium_sh
+    @medium_ship = []
   end
 
   def banner
@@ -71,21 +71,22 @@ class Menu
   def two_unit_entry
     banner
     puts "\n\n"
-    puts @board.print_board
+    puts @board.p1_board
     puts "\n\nEnter the squares for the two-unit ship:"
     input = get_response
     formatted_input = @ship.format_input(input)
     if formatted_input.count != 2
       puts "Incorrect number of coordinates"
-      wait (1)
+      waiting
       two_unit_entry
     elsif !@ship.two_unit_adjacency(formatted_input)
       puts "Coordinates not adjacent"
-      wait (1)
+      waiting
       three_unit_entry
     else
       puts "Coordinates accepted!"
       @short_ship = formatted_input
+      @board.insert_p1_ship(@short_ship)
       three_unit_entry
     end
   end
@@ -93,7 +94,7 @@ class Menu
   def three_unit_entry
     banner
     puts "\n\n"
-    puts @board.print_board
+    puts @board.p1_board
     puts "\n\nEnter the squares for the three-unit ship:"
     input = get_response
     formatted_input = @ship.format_input(input)
@@ -111,6 +112,10 @@ class Menu
       three_unit_entry
     else
       puts "Completed!"
+      @medium_ship = formatted_input
+      @board.insert_p1_ship(@medium_ship)
+      waiting
+      game_play
     end
   end
 
@@ -132,6 +137,12 @@ class Menu
     if input == ""
       game_start
     end
+  end
+
+  def game_play
+    banner
+    @board.print_board
+    @board.p1_board
   end
 
   def ship_deintersector(input)

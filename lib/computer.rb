@@ -131,17 +131,17 @@ class Computer
   end
 
 end #class
-
-cpu = Computer.new
-cpu.create_ships
+# 
+# cpu = Computer.new
+# cpu.create_ships
+# # 10.times do
+# #   puts cpu.create_two_unit_ship
+# # end
+# # 10.times do
+# #   puts cpu.create_three_unit_ship
+# # end
 # 10.times do
-#   puts cpu.create_two_unit_ship
+#   puts cpu.create_ships
 # end
-# 10.times do
-#   puts cpu.create_three_unit_ship
-# end
-10.times do
-  puts cpu.create_ships
-end
-cpu.select_move
-binding.pry
+# cpu.select_move
+# binding.pry

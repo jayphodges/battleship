@@ -63,9 +63,24 @@ class Board
     border
   end
 
-  def insert_items(*ship)
-    ship.each {|coord| insert_p1_ship}
+  def p1_board
+    border
+    header
+    puts " A " + @a1.p1_map + " " + @a2.p1_map + " " + @a3.p1_map + " " + @a4.p1_map
+    puts " B " + @b1.p1_map + " " + @b2.p1_map + " " + @b3.p1_map + " " + @b4.p1_map
+    puts " C " + @c1.p1_map + " " + @c2.p1_map + " " + @c3.p1_map + " " + @c4.p1_map
+    puts " D " + @d1.p1_map + " " + @d2.p1_map + " " + @d3.p1_map + " " + @d4.p1_map
+    border
   end
+  # def print_boards
+  #   border
+  #   header
+  #   puts " A " + @a1.icon? + " " + @a2.icon? + " " + @a3.icon? + " " + @a4.icon? + "           " +
+  #   puts " B " + @b1.icon? + " " + @b2.icon? + " " + @b3.icon? + " " + @b4.icon? + "           " +
+  #   puts " C " + @c1.icon? + " " + @c2.icon? + " " + @c3.icon? + " " + @c4.icon? + "           " +
+  #   puts " D " + @d1.icon? + " " + @d2.icon? + " " + @d3.icon? + " " + @d4.icon? + "           " +
+  #   border
+  # end
 
   def insert_p1_hit(input)
     at_input = instance_variable_get("@#{input}")
@@ -77,9 +92,9 @@ class Board
     at_input.p2_hit = true
   end
 
-  def insert_p1_ships(ship1, ship2)
-    ships = ship1 + ship2
-    ships.each do |input|
+  def insert_p1_ship(ship)
+    # ships = ship1 + ship2
+    ship.each do |input|
       at_input = instance_variable_get("@#{input}")
       at_input.p1_ship = true
     end
@@ -95,13 +110,18 @@ class Board
 
 
 end
-game = Board.new
-game.print_board
-# game.insert_p1_hit("d1")
-binding.pry
-
-# ===========
-# . 1 2 3 4
+# game = Board.new
+# ship1 = ["a1", "a2"]
+# ship2 = ["b4", "c4", "d4"]
+# game.insert_p1_ships(ship1, ship2)
+# game.print_board
+# game.p1_board
+#
+# # game.insert_p1_hit("d1")
+# binding.pry
+#
+# # ===========
+# # . 1 2 3 4
 # A  M
 # B
 # C

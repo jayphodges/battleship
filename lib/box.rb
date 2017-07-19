@@ -23,4 +23,14 @@ class Box
       " "
     end
   end
+
+  def p1_map
+    if @p1_ship
+      # U+20E3 big square
+      # U+220E
+      "\u220es".encode('utf-8')
+    else
+      " "
+    end
+  end
 end
