@@ -21,8 +21,16 @@ class Ship
     (letter.codepoints.first - 1).chr
   end
 
+  def character_downs(letter)
+    (letter.codepoints.first - 2).chr
+  end
+
   def character_up(letter)
     (letter.codepoints.first + 1).chr
+  end
+
+  def character_ups(letter)
+    (letter.codepoints.first + 2).chr
   end
 
   def compare_letters(a, b)
@@ -93,7 +101,7 @@ class Ship
   def split_and_sort(input)
     input.scan(/../).sort
   end
-  
+
 end
 # ship = Ship.new
 # ship.two_unit_ship_input("a1 c1, b1")
