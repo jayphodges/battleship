@@ -3,18 +3,16 @@ require 'pry'
 require './lib/ship'
 
 class Computer
+  attr_reader :positions
 
   def initialize
     @ship = Ship.new
     @short_ship = []
     @medium_ship = []
-  end
-
-  def available
-    ["a1", "a2", "a3", "a4",
-     "b1", "b2", "b3", "b4",
-     "c1", "c2", "c3", "c4",
-     "d1", "d2", "d3", "d4"]
+    @positions = ["a1", "a2", "a3", "a4",
+                  "b1", "b2", "b3", "b4",
+                  "c1", "c2", "c3", "c4",
+                  "d1", "d2", "d3", "d4"]
   end
 
   def coordinate_generator
@@ -36,6 +34,13 @@ class Computer
       @medium_ship
     end
   end
+
+  def select_move
+    next_move = @positions.sample
+    @positions.delete(next_move)
+    next_move
+  end
+
 
 #===============================
 #    Two Unit Ship Creation
@@ -138,3 +143,5 @@ cpu.create_ships
 10.times do
   puts cpu.create_ships
 end
+cpu.select_move
+binding.pry
