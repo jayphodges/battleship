@@ -24,7 +24,7 @@ class Computer
   def create_ships
     create_two_unit_ship
     ship_deintersector
-    binding.pry
+    puts "First ship: #{@short_ship}, Second ship: #{@medium_ship}"
   end
 
   def ship_deintersector
@@ -129,9 +129,13 @@ class Computer
 end #class
 
 cpu = Computer.new
+cpu.create_ships
+# 10.times do
+#   puts cpu.create_two_unit_ship
+# end
+# 10.times do
+#   puts cpu.create_three_unit_ship
+# end
 10.times do
-  puts cpu.create_two_unit_ship
-end
-10.times do
-  puts cpu.create_three_unit_ship
+  puts cpu.create_ships
 end
