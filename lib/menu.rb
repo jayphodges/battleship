@@ -77,14 +77,35 @@ class Menu
       puts "Incorrect number of coordinates"
       wait (1)
       two_unit_entry
-    elsif @ship.two_unit_adjacency(formatted_input)
+    elsif !@ship.two_unit_adjacency(formatted_input)
       puts "Incorrect number of coordinates"
       wait (1)
       two_unit_entry
     else
       puts "Coordinates accepted!"
-      #places coordinates
-      #calls three unit entry
+      # places coordinates
+      three_unit_entry
+    end
+  end
+
+  def three_unit_entry
+    banner
+    puts "\n\n"
+    puts @board.print_board
+    puts "\n\nEnter the squares for the three-unit ship:"
+    binding.pry
+    formatted_input = @ship.format_input(input)
+    if formatted_input.count != 3
+      puts "Incorrect number of coordinates"
+      waiting
+      three_unit_entry
+    elsif @ship.three_unit_adjacency_letters(formatted_input) || @ship.three_unit_adjacency_numbers(formatted_input)
+      puts "Incorrect number of coordinates"
+      waiting
+      two_unit_entry
+    else
+      puts "Completed!"
+      binding.pry
     end
   end
 

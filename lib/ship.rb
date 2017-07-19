@@ -41,7 +41,17 @@ class Ship
     (a1 == b1) || (a2 == b2)
   end
 
-  def three_unit_adjacency(first, second, third)
+  def three_unit_adjacency_letters(input)
+    first = input[0][0]
+    second = input[1][0]
+    third = input[2][0]
+    adjacent_units(first,second) && adjacent_units(second,third)
+  end
+
+  def three_unit_adjacency_numbers(input)
+    first = input[0][1]
+    second = input[1][1]
+    third = input[2][1]
     adjacent_units(first,second) && adjacent_units(second,third)
   end
 
