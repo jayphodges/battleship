@@ -92,7 +92,6 @@ class Computer
     second_coordinate = @ship.character_up(input[1])
     if @ship.valid_number(second_coordinate)
      input + input[0] + second_coordinate
-      # valid combination, push coordinates
     else
      go_adjacent(input)
     end

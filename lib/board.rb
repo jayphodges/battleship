@@ -63,10 +63,42 @@ class Board
     border
   end
 
+  def insert_items(*ship)
+    ship.each {|coord| insert_p1_ship}
+  end
+
+  def insert_p1_hit(input)
+    at_input = instance_variable_get("@#{input}")
+    at_input.p1_hit = true
+  end
+
+  def insert_p2_hit(input)
+    at_input = instance_variable_get("@#{input}")
+    at_input.p2_hit = true
+  end
+
+  def insert_p1_ships(ship1, ship2)
+    ships = ship1 + ship2
+    ships.each do |input|
+      at_input = instance_variable_get("@#{input}")
+      at_input.p1_ship = true
+    end
+  end
+
+  def insert_p2_ships(ship1, ship2)
+    ships = ship1 + ship2
+    ships.each do |input|
+      at_input = instance_variable_get("@#{input}")
+      at_input.p2_ship = true
+    end
+  end
+
 
 end
 game = Board.new
 game.print_board
+# game.insert_p1_hit("d1")
+binding.pry
 
 # ===========
 # . 1 2 3 4
