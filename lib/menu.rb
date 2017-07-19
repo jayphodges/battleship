@@ -1,10 +1,10 @@
-require './lib/ai'
+require './lib/computer'
 require './lib/board'
 require './lib/box'
 require './lib/ship'
 require 'pry'
 
-class Battleship
+class Menu
 
   def initialize
     @board = Board.new
@@ -58,7 +58,7 @@ class Battleship
     puts "\n\nPress return once ready."
     input = get_response
     if input == ""
-      unit_entry
+      two_unit_entry
     # elsif
     #   game_start
     # end
@@ -95,7 +95,7 @@ class Battleship
 
 
 end
-game = Battleship.new
+game = Menu.new
 # @board = Board.new
 # binding.pry
 game.game_start

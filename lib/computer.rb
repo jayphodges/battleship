@@ -1,14 +1,10 @@
-# lib/ai.rb
+# lib/computer.rb
 require 'pry'
 require './lib/ship'
 
 class Computer
 
   def initialize
-    # @availale = ["a1", "a2", "a3", "a4",
-    #              "b1", "b2", "b3", "b4",
-    #              "c1", "c2", "c3", "c4",
-    #              "d1", "d2", "d3", "d4"]
     @ship = Ship.new
     @ship_short = []
     @ship_medium = []
@@ -19,7 +15,7 @@ class Computer
      "b1", "b2", "b3", "b4",
      "c1", "c2", "c3", "c4",
      "d1", "d2", "d3", "d4"]
-   end
+  end
 
    def create_ships
      create_two_unit_ship
@@ -29,9 +25,7 @@ class Computer
 
    def create_two_unit_ship
      coord = coordinate_generator
-     second_coordinate = go_adjacent(coord)
-     third_coordinate = go_adjacent(coord)
-     if second_coordinate == third_coordinate ||
+     go_adjacent(coord)
    end
 
    def create_three_unit_ship
@@ -46,12 +40,25 @@ class Computer
      end
    end
 
+
+
    def three_unit_ship_comparator (second_coordinate, third_coordinate)
      second_coordinate == third_coordinate ||
      @ship_short.any? {|x| x == second_coordinate} ||
      @ship_short.any? {|x| x == third_coordinate}
    end
 
+   def place_three_unit_ship_horizontal
+     initial_point = ('a'..'d').to_a.sample + ('1'..'2').to_a.sample
+     initial_point + initial_point[0] + @ship.character_up(initial_point)
+     + initial_point[0] + @ship.character_up(@ship.character_up(initial_point))
+   end
+
+   def place_three_unit_ship_vertical
+     initial_point = ('a'..'b').to_a.sample + ('1'..'4').to_a.sample
+     initial_point + @ship.character_down(initial_point) +
+     initial_point[1] + @ship.character_down(@ship.character_down(initial_point)) +
+     initial_point[1]
    end
 
    def coordinate_generator
@@ -70,14 +77,28 @@ class Computer
       ship = go_up(coord)
       place_short_ship(ship)
      when 1
-      ship = go_down(coord)
+      ship = go_right(coord)
       place_short_ship(ship)
      when 2
       ship = go_down(coord)
       place_short_ship(ship)
      when 3
-      ship = go_up(coord)
+      ship = go_left(coord)
       place_short_ship(ship)
+     end
+   end
+
+   def go_adjacent_three(coord)
+     input = rand(4)
+     case input
+     when 0
+      go_up(coord)
+     when 1
+      go_right(coord)
+     when 2
+      go_down(coord)
+     when 3
+      go_left(coord)
      end
    end
 
@@ -120,7 +141,7 @@ class Computer
 end
 
 cpu = Computer.new
-cpu.create_ships
+binding.pry
 # 100.times do
 #   puts cpu.create_two_unit_ship
 # end
