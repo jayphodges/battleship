@@ -12,9 +12,9 @@ class ShipTest < Minitest::Test
   end
 
   def test_for_valid_letter
-    assert @ship.valid_letter("A")
-    assert @ship.valid_letter("D")
-    refute @ship.valid_letter("a")
+    assert @ship.valid_letter("a")
+    assert @ship.valid_letter("d")
+    refute @ship.valid_letter("A")
     refute @ship.valid_letter("1")
   end
 
@@ -25,27 +25,28 @@ class ShipTest < Minitest::Test
     refute @ship.valid_number("a")
   end
 
-  def test_for_letter_up
-    assert_equal "b", @ship.letter_up("a")
-    assert_equal "X", @ship.letter_up("W")
+  def test_for_character_down
+    assert_equal "a", @ship.character_down("b")
+    assert_equal "W", @ship.character_down("X")
   end
 
-  def test_for_letter_down
-    assert_equal "a", @ship.letter_down("b")
-    assert_equal "W", @ship.letter_down("X")
+  def test_for_character_up
+    assert_equal "b", @ship.character_up("a")
+    assert_equal "X", @ship.character_up("W")
+    assert_equal "1", @ship.character_up("0")
+    refute "2", @ship.character_up("0")
   end
 
-  def test_for_adjacent_letters
-    assert @ship.adjacent_letters("b", "a")
-    assert @ship.adjacent_letters("B", "A")
-    assert @ship.adjacent_letters("m", "n")
-    refute @ship.adjacent_letters("a","c")
+  def test_for_character_ups
+    assert_equal "c", @ship.character_up("a")
+    assert_equal "Y", @ship.character_up("W")
   end
 
-  def test_for_adjacent_numbers
-    assert @ship.adjacent_numbers(1, 2)
-    assert @ship.adjacent_numbers(9, 10)
-    refute @ship.adjacent_numbers(1, 3)
+  def test_for_adjacent_units
+    assert @ship.adjacent_units("b", "a")
+    assert @ship.adjacent_units("M", "N")
+    assert @ship.adjacent_units("1", "2")
+    refute @ship.adjacent_units("a","c")
   end
 
   def test_vertical_and_horizontal_check
@@ -60,6 +61,7 @@ class ShipTest < Minitest::Test
   end
 
   def test_input_formatter
+    skip
     assert_equal ["A1","B2"],
      @ship.format_input("a1b2")
     assert_equal ["AA", "ZZ"],

@@ -97,15 +97,12 @@ class Menu
     puts "\n\nEnter the squares for the three-unit ship:"
     input = get_response
     formatted_input = @ship.format_input(input)
-    binding.pry
     if formatted_input.count != 3
       puts "Incorrect number of coordinates"
-      binding.pry
       waiting
       three_unit_entry
     elsif !@ship.three_unit_adjacency_letters(formatted_input) || !@ship.three_unit_adjacency_numbers(formatted_input)
       puts "Coordinates not adjacent"
-      binding.pry
       waiting
       three_unit_entry
     elsif ship_deintersector(formatted_input)
@@ -114,7 +111,6 @@ class Menu
       three_unit_entry
     else
       puts "Completed!"
-      binding.pry
     end
   end
 
