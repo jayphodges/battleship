@@ -1,8 +1,4 @@
-# can handle position checking for ship placement?
-# require './lib/ai'
-# require './lib/board'
-# require './lib/box'
-# require './lib/ship'
+# lib/ship.rb
 require 'pry'
 
 class Ship
@@ -33,10 +29,6 @@ class Ship
     a == character_down(b) || a == character_up(b)
   end
 
-  # def adjacent_numbers(a, b)
-  #   a == b - 1 || a == b + 1
-  # end
-
   def vertical_horizontal(a1, a2, b1, b2)
     (a1 == b1) || (a2 == b2)
   end
@@ -54,19 +46,6 @@ class Ship
     third = input[2][1]
     first = second && second = third
   end
-
-  # def two_unit_ship_input(input)
-  #   # expected input ["a1","a2"]
-  #   # input = format_input(user_input)
-  #   # binding.pry
-  #   if input.count == 2
-  #     puts "Incorrect number of coordinates"
-  #   elsif two_unit_adjacency(input)
-  #     puts "Ship is not vertical or horizontal"
-  #   else
-  #     input
-  #   end
-  # end
 
   def two_unit_adjacency(input)
     adjacent_units(input[0][0], input[1][0]) || adjacent_units(input[0][1], input[1][1])
@@ -87,10 +66,6 @@ class Ship
     #   # inserts data into board / box
     end
   end
-
-  # def convert_to_pairs(input)
-  #   input.scan(/../)
-  # end
 
   def format_input(input)
     formatted_input = input.gsub!(/[\s,]/ ,"")

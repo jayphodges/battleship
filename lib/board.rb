@@ -6,7 +6,11 @@ class Board
   attr_accessor :a1, :a2, :a3, :a4,
                 :b1, :b2, :b3, :b4,
                 :c1, :c2, :c3, :c4,
-                :d1, :d2, :d3, :d4
+                :d1, :d2, :d3, :d4,
+                :p1_ship1,
+                :p1_ship2,
+                :p2_ship1,
+                :p2_ship2
 
   def initialize
     @a1 = Box.new
@@ -25,6 +29,7 @@ class Board
     @d2 = Box.new
     @d3 = Box.new
     @d4 = Box.new
+
     @a1.p1_hit = true
     @a2.p1_hit = true
     @a2.p2_ship = true
@@ -51,10 +56,6 @@ class Board
   def print_board
     border
     header
-    # binding.pry
-    # @a1.p1_hit = true
-    # @a2.p2_ship = true
-    # @s2.p1_hit = true
     puts " A " + @a1.icon? + " " + @a2.icon? + " " + @a3.icon? + " " + @a4.icon?
     puts " B " + @b1.icon? + " " + @b2.icon? + " " + @b3.icon? + " " + @b4.icon?
     puts " C " + @c1.icon? + " " + @c2.icon? + " " + @c3.icon? + " " + @c4.icon?

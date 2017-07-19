@@ -34,7 +34,6 @@ class ShipTest < Minitest::Test
     assert_equal "b", @ship.character_up("a")
     assert_equal "X", @ship.character_up("W")
     assert_equal "1", @ship.character_up("0")
-    refute "2", @ship.character_up("0")
   end
 
   def test_for_character_ups
@@ -70,6 +69,9 @@ class ShipTest < Minitest::Test
      @ship.format_input("asdf1234")
   end
 
+  def test_two_unit_adjacency
+    assert @ship.two_unit_adjacency(["a1", "b1"])
+  end
 
 
 end
