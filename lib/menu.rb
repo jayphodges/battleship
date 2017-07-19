@@ -8,6 +8,7 @@ class Menu
 
   def initialize
     @board = Board.new
+    @ship = Ship.new
   end
 
   def banner
@@ -71,6 +72,20 @@ class Menu
     puts @board.print_board
     puts "\n\nEnter the squares for the two-unit ship:"
     input = get_response
+    formatted_input = @ship.format_input(input)
+    if formatted_input.count != 2
+      puts "Incorrect number of coordinates"
+      wait (1)
+      two_unit_entry
+    elsif @ship.two_unit_adjacency(formatted_input)
+      puts "Incorrect number of coordinates"
+      wait (1)
+      two_unit_entry
+    else
+      puts "Coordinates accepted!"
+      #places coordinates
+      #calls three unit entry
+    end
   end
 
   def get_response

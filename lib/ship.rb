@@ -21,20 +21,12 @@ class Ship
     (letter.codepoints.first - 1).chr
   end
 
-  def character_downs(letter)
-    (letter.codepoints.first - 2).chr
-  end
-
   def character_up(letter)
     (letter.codepoints.first + 1).chr
   end
 
   def character_ups(letter)
     (letter.codepoints.first + 2).chr
-  end
-
-  def compare_letters(a, b)
-
   end
 
   def adjacent_units(a, b)
@@ -53,22 +45,22 @@ class Ship
     adjacent_units(first,second) && adjacent_units(second,third)
   end
 
-  def two_unit_ship_input(user_input)
-    # expected input ["A1","A2"]
-    input = format_input(user_input)
-    # binding.pry
-    if input.count == 2
-      puts "Incorrect number of coordinates"
-    elsif adjacent_units(input[0][0], input[1][0]) ||
-      adjacent_units(input[0][1], input[1][1])
-      puts "Ship is not vertical or horizontal"
-    #   # returns to game start_prompt
-    #   # return false
-    # # elsif
-    # # else
-    end
-  end
+  # def two_unit_ship_input(input)
+  #   # expected input ["a1","a2"]
+  #   # input = format_input(user_input)
+  #   # binding.pry
+  #   if input.count == 2
+  #     puts "Incorrect number of coordinates"
+  #   elsif two_unit_adjacency(input)
+  #     puts "Ship is not vertical or horizontal"
+  #   else
+  #     input
+  #   end
+  # end
 
+  def two_unit_adjacency(input)
+    adjacent_units(input[0][0], input[1][0]) || adjacent_units(input[0][1], input[1][1])
+  end
 
   def three_unit_ship_input(user_input)
     input = format_input(user_input)
@@ -92,7 +84,7 @@ class Ship
 
   def format_input(input)
     formatted_input = input.gsub!(/[\s,]/ ,"")
-    binding.pry
+    # binding.pry
     coords = formatted_input.downcase
     coords.scan(/../).sort
     # binding.pry
@@ -104,5 +96,5 @@ class Ship
 
 end
 # ship = Ship.new
-# ship.two_unit_ship_input("a1 c1, b1")
-# binding.pry
+# ship.two_unit_ship_input("a1 D1")
+# # binding.pry
