@@ -1,6 +1,5 @@
-# require 'simplecov'
-# SimpleCov.start
-# require './lib/box'
+require 'simplecov'
+SimpleCov.start
 require './lib/board'
 require 'pry'
 require 'minitest/autorun'

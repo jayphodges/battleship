@@ -66,9 +66,10 @@ class Menu
     input = get_response
     if input == ""
       two_unit_entry
-    # elsif
-    #   game_start
-    # end
+    else
+      puts "Incorrect input"
+      waiting
+      start_prompt
     end
   end
 
@@ -138,12 +139,14 @@ class Menu
     puts "a hit."
     puts "\n\n\nThe first player to successfully sink all of their opponents ships wins!"
     puts "\n\nPress return to exit to the menu"
-    press_any_key
-    intro_menu
-    # input = get_response
-    # if input == ""
-    #   game_start
-    # end
+    input = get_response
+    if input == ""
+      game_start
+    else
+      puts "incorrect input"
+      waiting
+      instructions
+    end
   end
 
   def game_play
@@ -285,13 +288,6 @@ class Menu
       true
     end
   end
-
-  def press_any_key
-    print "press any key"
-    STDIN.getch
-    intro_menu
-  end
-
 
 end
 game = Menu.new

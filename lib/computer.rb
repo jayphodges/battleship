@@ -43,10 +43,6 @@ class Computer
     next_move
   end
 
-
-#===============================
-#    Two Unit Ship Creation
-#===============================
   def create_two_unit_ship
     coord = coordinate_generator
     first_ship = go_adjacent(coord)
@@ -104,9 +100,6 @@ class Computer
     end
   end
 
-#===============================
-#   Three unit ship Creation
-#===============================
   def create_three_unit_ship
     if rand(0) == 0
       place_three_unit_ship_horizontal
@@ -132,18 +125,4 @@ class Computer
     @medium_ship.inspect
   end
 
-end #class
-#
-# cpu = Computer.new
-# cpu.create_ships
-# # 10.times do
-# #   puts cpu.create_two_unit_ship
-# # end
-# # 10.times do
-# #   puts cpu.create_three_unit_ship
-# # end
-# 10.times do
-#   puts cpu.create_ships
-# end
-# cpu.select_move
-# binding.pry
+end

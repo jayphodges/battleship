@@ -26,8 +26,6 @@ class Box
 
   def map2
     if @p1_ship && @p2_hit
-      # U+20E3 big square
-      # U+220E
       # "\u220es".encode('utf-8')
       "X"
     elsif @p1_ship

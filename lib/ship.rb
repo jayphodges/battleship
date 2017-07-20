@@ -1,4 +1,3 @@
-# lib/ship.rb
 require 'pry'
 
 class Ship
@@ -29,8 +28,8 @@ class Ship
     a == character_down(b) || a == character_up(b)
   end
 
-  def vertical_horizontal(a1, a2, b1, b2)
-    (a1 == b1) || (a2 == b2)
+  def two_unit_adjacency(input)
+    adjacent_units(input[0][0], input[1][0]) || adjacent_units(input[0][1], input[1][1])
   end
 
   def three_unit_adjacency_letters(input)
@@ -47,44 +46,19 @@ class Ship
     first = second && second = third
   end
 
-  def two_unit_adjacency(input)
-    adjacent_units(input[0][0], input[1][0]) || adjacent_units(input[0][1], input[1][1])
-  end
-
-  def three_unit_ship_input(user_input)
-    input = format_input(user_input)
-    if input.count != 2
-      puts "Incorrect number of coordinates"
-      # returns to game start_prompt
-    elsif !three_unit_adjacency
-      puts "Incorrect placement"
-      # returns to game start_prompt
-    else
-      puts "Can't have two ships in the same space"
-      # returns to game start_prompt
-    # else
-    #   # inserts data into board / box
-    end
-  end
-
   def format_input(input)
     formatted_input = input.gsub!(/[\s,]/ ,"")
-    # binding.pry
     coords = formatted_input.downcase
     coords.scan(/../).sort
-    # binding.pry
   end
 
   def hit_format(input)
     formatted_input = input.input.gsub!(/[\s,]/ ,"")
     coords = formatted_input.downcase
-  end 
+  end
 
   def split_and_sort(input)
     input.scan(/../).sort
   end
 
 end
-# ship = Ship.new
-# ship.two_unit_ship_input("a1 D1")
-# # binding.pry

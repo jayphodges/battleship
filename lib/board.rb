@@ -49,10 +49,10 @@ class Board
     border
     puts "  Opponent"
     header
-    puts " A " + @a1.icon? + " " + @a2.icon? + " " + @a3.icon? + " " + @a4.icon?
-    puts " B " + @b1.icon? + " " + @b2.icon? + " " + @b3.icon? + " " + @b4.icon?
-    puts " C " + @c1.icon? + " " + @c2.icon? + " " + @c3.icon? + " " + @c4.icon?
-    puts " D " + @d1.icon? + " " + @d2.icon? + " " + @d3.icon? + " " + @d4.icon?
+    puts " A " + @a1.map1 + " " + @a2.map1 + " " + @a3.map1 + " " + @a4.map1
+    puts " B " + @b1.map1 + " " + @b2.map1 + " " + @b3.map1 + " " + @b4.map1
+    puts " C " + @c1.map1 + " " + @c2.map1 + " " + @c3.map1 + " " + @c4.map1
+    puts " D " + @d1.map1 + " " + @d2.map1 + " " + @d3.map1 + " " + @d4.map1
     border
   end
 
@@ -60,10 +60,10 @@ class Board
     border
     puts "  Player"
     header
-    puts " A " + @a1.p1_map + " " + @a2.p1_map + " " + @a3.p1_map + " " + @a4.p1_map
-    puts " B " + @b1.p1_map + " " + @b2.p1_map + " " + @b3.p1_map + " " + @b4.p1_map
-    puts " C " + @c1.p1_map + " " + @c2.p1_map + " " + @c3.p1_map + " " + @c4.p1_map
-    puts " D " + @d1.p1_map + " " + @d2.p1_map + " " + @d3.p1_map + " " + @d4.p1_map
+    puts " A " + @a1.map2 + " " + @a2.map2 + " " + @a3.map2 + " " + @a4.map2
+    puts " B " + @b1.map2 + " " + @b2.map2 + " " + @b3.map2 + " " + @b4.map2
+    puts " C " + @c1.map2 + " " + @c2.map2 + " " + @c3.map2 + " " + @c4.map2
+    puts " D " + @d1.map2 + " " + @d2.map2 + " " + @d3.map2 + " " + @d4.map2
     border
   end
 
