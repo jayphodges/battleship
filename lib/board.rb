@@ -1,4 +1,5 @@
 # lib/board.rb
+require './lib/ship.rb'
 require './lib/box.rb'
 require 'pry'
 
@@ -29,12 +30,12 @@ class Board
     @d2 = Box.new
     @d3 = Box.new
     @d4 = Box.new
-
-    @a1.p1_hit = true
-    @a2.p1_hit = true
-    @a2.p2_ship = true
-    @a3.p1_hit = true
-    @a4.p1_hit = true
+    @ship = Ship.new
+    # @a1.p1_hit = true
+    # @a2.p1_hit = true
+    # @a2.p2_ship = true
+    # @a3.p1_hit = true
+    # @a4.p1_hit = true
   end
 
   def a1
@@ -109,7 +110,8 @@ class Board
 
   def position_available(input)
     at_input = instance_variable_get("@#{input}")
-    at_input.p1_hit
+    binding.pry
+    !at_input.p1_hit && @ship.valid_letter(input[0]) && @ship.valid_number(input[1])
   end
 
 

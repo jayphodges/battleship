@@ -150,13 +150,19 @@ class Menu
     puts "Select a coordinate to shoot"
     response = get_response
     input = response.downcase
-    binding.pry
     if input == "q"
       exit!
-    elsif !@board.position_available
+    elsif !@board.position_available(input)
+      binding.pry
       puts "You have already selected that coordinate"
+      game_play
+    elsif input.length != 2
+      binding.pry
+      puts "Incorrect entry"
+      game_play
     else
       @board.insert_p1_hit(input)
+      computer_turn
     end
   end
 
@@ -164,14 +170,15 @@ class Menu
     @cpu.create_ships
     @p2_short = @cpu.short_ship
     @p2_medium = @cpu.medium_ship
-    binding.pry
     @board.insert_p2_ship(@short_ship)
     @board.insert_p2_ship(@medium_ship)
   end
 
 
   def computer_turn
-
+    input = @cpu.select_move
+    @board.insert_p2_hit(input)
+    game_play
   end
 
   def ship_deintersector(input1, input2)
