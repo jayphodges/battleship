@@ -153,7 +153,6 @@ class Menu
     puts "Select a coordinate to shoot"
     response = get_response
     input = response.downcase
-    # binding.pry
     if input == "q"
       exit!
     elsif input == "c"
@@ -163,12 +162,10 @@ class Menu
     elsif input == "skip"
       computer_turn
     elsif !@board.position_available(input)
-      # binding.pry
       puts "Invalid coordinate"
       waiting
       game_play
     elsif input.length != 2
-      # binding.pry
       puts "Incorrect entry"
       waiting
       game_play
@@ -191,7 +188,6 @@ class Menu
       @p1_short.delete(input)
       if @p1_short.empty? && @p1_medium.empty?
         puts "They sank all your ships!!"
-        binding.pry
         waiting
         game_over
       elsif @p1_short.empty?
@@ -205,7 +201,6 @@ class Menu
       @p1_medium.delete(input)
       if @p1_medium.empty? && @p1_short.empty?
         puts "They sank all your ships!!"
-        binding.pry
         game_over
       elsif @p1_medium.empty?
         puts "They sank your cruiser!!"
@@ -220,12 +215,10 @@ class Menu
   end
 
   def computer_ship_sinker(input)
-    # binding.pry
     if @p2_short.include?(input)
       @p2_short.delete(input)
       if @p2_short.empty? && @p2_medium.empty?
         puts "You sank all their ships!!"
-        binding.pry
         waiting
         you_win
       elsif @p2_short.empty?
@@ -239,7 +232,6 @@ class Menu
       @p2_medium.delete(input)
       if @p2_medium.empty? && @p2_short.empty?
         puts "You sank all their ships!!"
-        binding.pry
         you_win
       elsif @p2_medium.empty?
         puts "You sank their cruiser!!"
@@ -254,30 +246,34 @@ class Menu
   end
 
   def game_over
-    puts "  _____                         ____                 "
-    puts " / ____|                       / __ \\                "
-    puts "| |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ "
-    puts "| | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__|"
-    puts "| |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   "
-    puts " \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   "
+    banner
+    puts "\n\n\n"
+    puts "       _____                         ____                 "
+    puts "      / ____|                       / __ \\                "
+    puts "     | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ "
+    puts "     | | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__|"
+    puts "     | |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   "
+    puts "      \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   "
+    puts "\n\n\n\n\n\n"
     exit!
   end
 
   def you_win
-    puts "__     __          __          ___         _   _ "
-    puts "\\ \\   / /          \\ \\        / (_)       | | | |"
-    puts " \\ \\_/ /__  _   _   \\ \\  /\\  / / _ _ __   | | | |"
-    puts "  \\   / _ \\| | | |   \\ \\/  \\/ / | | '_ \\  | | | |"
-    puts "   | | (_) | |_| |    \\  /\\  /  | | | | | |_| |_|"
-    puts "   |_|\\___/ \\__,_|     \\/  \\/   |_|_| |_| (_) (_)"
+    banner
+    puts "\n\n\n"
+    puts "     __     __          __          ___         _   _ "
+    puts "     \\ \\   / /          \\ \\        / (_)       | | | |"
+    puts "      \\ \\_/ /__  _   _   \\ \\  /\\  / / _ _ __   | | | |"
+    puts "       \\   / _ \\| | | |   \\ \\/  \\/ / | | '_ \\  | | | |"
+    puts "        | | (_) | |_| |    \\  /\\  /  | | | | | |_| |_|"
+    puts "        |_|\\___/ \\__,_|     \\/  \\/   |_|_| |_| (_) (_)"
+    puts "\n\n\n\n\n\n"
     exit!
   end
 
   def computer_turn
     input = @cpu.select_move
     @board.insert_p2_hit(input)
-    puts "#{input}"
-    sleep(3)
     player_ship_sinker(input)
   end
 
