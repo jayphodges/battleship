@@ -2,6 +2,7 @@ require './lib/computer'
 require './lib/board'
 require './lib/box'
 require './lib/ship'
+require 'io/console'
 require 'pry'
 
 class Menu
@@ -60,7 +61,7 @@ class Menu
     puts "your two ships. The first is two units long and the second is"
     puts "three units long.\n\n"
     puts "The grid has A1 at the top left and D4 at the bottom right.\n\n"
-    puts @board.print_board
+    puts @board.p1_board
     puts "\n\nPress return once ready."
     input = get_response
     if input == ""
@@ -137,10 +138,12 @@ class Menu
     puts "a hit."
     puts "\n\n\nThe first player to successfully sink all of their opponents ships wins!"
     puts "\n\nPress return to exit to the menu"
-    input = get_response
-    if input == ""
-      game_start
-    end
+    press_any_key
+    intro_menu
+    # input = get_response
+    # if input == ""
+    #   game_start
+    # end
   end
 
   def game_play
@@ -153,6 +156,12 @@ class Menu
     # binding.pry
     if input == "q"
       exit!
+    elsif input == "c"
+      puts "#{@p2_short} and #{@p2_medium}"
+      sleep(2)
+      game_play
+    elsif input == "skip"
+      computer_turn
     elsif !@board.position_available(input)
       # binding.pry
       puts "Invalid coordinate"
@@ -175,8 +184,6 @@ class Menu
     @p2_medium = @cpu.medium_ship
     @board.insert_p2_ship(@p2_short)
     @board.insert_p2_ship(@p2_medium)
-    puts "#{@p2_short} and #{@p2_medium}"
-    sleep(5)
   end
 
   def player_ship_sinker(input)
@@ -184,6 +191,7 @@ class Menu
       @p1_short.delete(input)
       if @p1_short.empty? && @p1_medium.empty?
         puts "They sank all your ships!!"
+        binding.pry
         waiting
         game_over
       elsif @p1_short.empty?
@@ -197,6 +205,7 @@ class Menu
       @p1_medium.delete(input)
       if @p1_medium.empty? && @p1_short.empty?
         puts "They sank all your ships!!"
+        binding.pry
         game_over
       elsif @p1_medium.empty?
         puts "They sank your cruiser!!"
@@ -216,6 +225,7 @@ class Menu
       @p2_short.delete(input)
       if @p2_short.empty? && @p2_medium.empty?
         puts "You sank all their ships!!"
+        binding.pry
         waiting
         you_win
       elsif @p2_short.empty?
@@ -229,11 +239,12 @@ class Menu
       @p2_medium.delete(input)
       if @p2_medium.empty? && @p2_short.empty?
         puts "You sank all their ships!!"
+        binding.pry
         you_win
       elsif @p2_medium.empty?
         puts "You sank their cruiser!!"
         waiting
-        you_win
+        computer_turn
       else
         computer_turn
       end
@@ -243,16 +254,30 @@ class Menu
   end
 
   def game_over
-    # binding.pry
+    puts "  _____                         ____                 "
+    puts " / ____|                       / __ \\                "
+    puts "| |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ "
+    puts "| | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__|"
+    puts "| |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   "
+    puts " \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   "
+    exit!
   end
 
   def you_win
-    # binding.pry
+    puts "__     __          __          ___         _   _ "
+    puts "\\ \\   / /          \\ \\        / (_)       | | | |"
+    puts " \\ \\_/ /__  _   _   \\ \\  /\\  / / _ _ __   | | | |"
+    puts "  \\   / _ \\| | | |   \\ \\/  \\/ / | | '_ \\  | | | |"
+    puts "   | | (_) | |_| |    \\  /\\  /  | | | | | |_| |_|"
+    puts "   |_|\\___/ \\__,_|     \\/  \\/   |_|_| |_| (_) (_)"
+    exit!
   end
 
   def computer_turn
     input = @cpu.select_move
     @board.insert_p2_hit(input)
+    puts "#{input}"
+    sleep(3)
     player_ship_sinker(input)
   end
 
@@ -265,9 +290,14 @@ class Menu
     end
   end
 
+  def press_any_key
+    print "press any key"
+    STDIN.getch
+    intro_menu
+  end
+
+
 end
-# game = Menu.new
-# cpu = Computer.new
-# # @board = Board.new
-# # # binding.pry
-# game.game_start
+game = Menu.new
+cpu = Computer.new
+game.game_start

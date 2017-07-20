@@ -56,6 +56,7 @@ class Board
 
   def print_board
     border
+    puts "  Opponent"
     header
     puts " A " + @a1.icon? + " " + @a2.icon? + " " + @a3.icon? + " " + @a4.icon?
     puts " B " + @b1.icon? + " " + @b2.icon? + " " + @b3.icon? + " " + @b4.icon?
@@ -66,6 +67,7 @@ class Board
 
   def p1_board
     border
+    puts "  Player"
     header
     puts " A " + @a1.p1_map + " " + @a2.p1_map + " " + @a3.p1_map + " " + @a4.p1_map
     puts " B " + @b1.p1_map + " " + @b2.p1_map + " " + @b3.p1_map + " " + @b4.p1_map
@@ -115,20 +117,3 @@ class Board
 
 
 end
-# game = Board.new
-# ship1 = ["a1", "a2"]
-# ship2 = ["b4", "c4", "d4"]
-# game.insert_p1_ships(ship1, ship2)
-# game.print_board
-# game.p1_board
-#
-# # game.insert_p1_hit("d1")
-# binding.pry
-#
-# # ===========
-# # . 1 2 3 4
-# A  M
-# B
-# C
-# D
-# ===========
