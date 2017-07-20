@@ -100,12 +100,16 @@ class Board
     end
   end
 
-  def insert_p2_ships(ship1, ship2)
-    ships = ship1 + ship2
-    ships.each do |input|
+  def insert_p2_ship(ship)
+    ship.each do |input|
       at_input = instance_variable_get("@#{input}")
       at_input.p2_ship = true
     end
+  end
+
+  def position_available(input)
+    at_input = instance_variable_get("@#{input}")
+    at_input.p1_hit
   end
 
 

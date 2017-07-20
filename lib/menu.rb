@@ -9,8 +9,11 @@ class Menu
   def initialize
     @board = Board.new
     @ship = Ship.new
+    @cpu = Computer.new
     @short_ship = []
     @medium_ship = []
+    @p2_short = []
+    @p2_medium = []
   end
 
   def banner
@@ -82,7 +85,7 @@ class Menu
     elsif !@ship.two_unit_adjacency(formatted_input)
       puts "Coordinates not adjacent"
       waiting
-      three_unit_entry
+      two_unit_entry
     else
       puts "Coordinates accepted!"
       @short_ship = formatted_input
@@ -106,7 +109,7 @@ class Menu
       puts "Coordinates not adjacent"
       waiting
       three_unit_entry
-    elsif ship_deintersector(formatted_input)
+    elsif ship_deintersector(formatted_input, @short_ship)
       puts "Ships intersect!"
       waiting
       three_unit_entry
@@ -115,6 +118,7 @@ class Menu
       @medium_ship = formatted_input
       @board.insert_p1_ship(@medium_ship)
       waiting
+      computer_ship_placement
       game_play
     end
   end
@@ -143,10 +147,35 @@ class Menu
     banner
     @board.print_board
     @board.p1_board
+    puts "Select a coordinate to shoot"
+    response = get_response
+    input = response.downcase
+    binding.pry
+    if input == "q"
+      exit!
+    elsif !@board.position_available
+      puts "You have already selected that coordinate"
+    else
+      @board.insert_p1_hit(input)
+    end
   end
 
-  def ship_deintersector(input)
-    comparator = @short_ship & input
+  def computer_ship_placement
+    @cpu.create_ships
+    @p2_short = @cpu.short_ship
+    @p2_medium = @cpu.medium_ship
+    binding.pry
+    @board.insert_p2_ship(@short_ship)
+    @board.insert_p2_ship(@medium_ship)
+  end
+
+
+  def computer_turn
+
+  end
+
+  def ship_deintersector(input1, input2)
+    comparator = input1 & input2
     if comparator.empty?
       false
     else
@@ -156,6 +185,7 @@ class Menu
 
 end
 game = Menu.new
+cpu = Computer.new
 # @board = Board.new
 # binding.pry
 game.game_start

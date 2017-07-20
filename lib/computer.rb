@@ -3,7 +3,9 @@ require 'pry'
 require './lib/ship'
 
 class Computer
-  attr_reader :positions
+  attr_reader :positions,
+              :short_ship,
+              :medium_ship
 
   def initialize
     @ship = Ship.new
@@ -131,7 +133,7 @@ class Computer
   end
 
 end #class
-# 
+#
 # cpu = Computer.new
 # cpu.create_ships
 # # 10.times do

@@ -75,6 +75,11 @@ class Ship
     # binding.pry
   end
 
+  def hit_format(input)
+    formatted_input = input.input.gsub!(/[\s,]/ ,"")
+    coords = formatted_input.downcase
+  end 
+
   def split_and_sort(input)
     input.scan(/../).sort
   end
