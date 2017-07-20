@@ -110,7 +110,6 @@ class Board
 
   def position_available(input)
     at_input = instance_variable_get("@#{input}")
-    binding.pry
     !at_input.p1_hit && @ship.valid_letter(input[0]) && @ship.valid_number(input[1])
   end
 

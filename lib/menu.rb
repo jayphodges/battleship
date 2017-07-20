@@ -10,8 +10,8 @@ class Menu
     @board = Board.new
     @ship = Ship.new
     @cpu = Computer.new
-    @short_ship = []
-    @medium_ship = []
+    @p1_short = []
+    @p1_medium = []
     @p2_short = []
     @p2_medium = []
   end
@@ -88,8 +88,8 @@ class Menu
       two_unit_entry
     else
       puts "Coordinates accepted!"
-      @short_ship = formatted_input
-      @board.insert_p1_ship(@short_ship)
+      @p1_short = formatted_input
+      @board.insert_p1_ship(@p1_short)
       three_unit_entry
     end
   end
@@ -109,14 +109,14 @@ class Menu
       puts "Coordinates not adjacent"
       waiting
       three_unit_entry
-    elsif ship_deintersector(formatted_input, @short_ship)
+    elsif ship_deintersector(formatted_input, @p1_short)
       puts "Ships intersect!"
       waiting
       three_unit_entry
     else
       puts "Completed!"
-      @medium_ship = formatted_input
-      @board.insert_p1_ship(@medium_ship)
+      @@p1_medium = formatted_input
+      @board.insert_p1_ship(@@p1_medium)
       waiting
       computer_ship_placement
       game_play
@@ -150,19 +150,22 @@ class Menu
     puts "Select a coordinate to shoot"
     response = get_response
     input = response.downcase
+    # binding.pry
     if input == "q"
       exit!
     elsif !@board.position_available(input)
-      binding.pry
-      puts "You have already selected that coordinate"
+      # binding.pry
+      puts "Invalid coordinate"
+      waiting
       game_play
     elsif input.length != 2
-      binding.pry
+      # binding.pry
       puts "Incorrect entry"
+      waiting
       game_play
     else
       @board.insert_p1_hit(input)
-      computer_turn
+      computer_ship_sinker(input)
     end
   end
 
@@ -170,15 +173,87 @@ class Menu
     @cpu.create_ships
     @p2_short = @cpu.short_ship
     @p2_medium = @cpu.medium_ship
-    @board.insert_p2_ship(@short_ship)
-    @board.insert_p2_ship(@medium_ship)
+    @board.insert_p2_ship(@p2_short)
+    @board.insert_p2_ship(@p2_medium)
+    puts "#{@p2_short} and #{@p2_medium}"
+    sleep(5)
   end
 
+  def player_ship_sinker(input)
+    if @p1_short.include?(input)
+      @p1_short.delete(input)
+      if @p1_short.empty? && @p1_medium.empty?
+        puts "They sank all your ships!!"
+        waiting
+        game_over
+      elsif @p1_short.empty?
+        puts "They sank your destroyer!!"
+        waiting
+        game_play
+      else
+        game_play
+      end
+    elsif @p1_medium.include?(input)
+      @p1_medium.delete(input)
+      if @p1_medium.empty? && @p1_short.empty?
+        puts "They sank all your ships!!"
+        game_over
+      elsif @p1_medium.empty?
+        puts "They sank your cruiser!!"
+        waiting
+        game_play
+      else
+        game_play
+      end
+    else
+      game_play
+    end
+  end
+
+  def computer_ship_sinker(input)
+    # binding.pry
+    if @p2_short.include?(input)
+      @p2_short.delete(input)
+      if @p2_short.empty? && @p2_medium.empty?
+        puts "You sank all their ships!!"
+        waiting
+        you_win
+      elsif @p2_short.empty?
+        puts "You sank their destroyer!!"
+        waiting
+        computer_turn
+      else
+        computer_turn
+      end
+    elsif @p2_medium.include?(input)
+      @p2_medium.delete(input)
+      if @p2_medium.empty? && @p2_short.empty?
+        puts "You sank all their ships!!"
+        you_win
+      elsif @p2_medium.empty?
+        puts "You sank their cruiser!!"
+        waiting
+        you_win
+      else
+        computer_turn
+      end
+    else
+      computer_turn
+    end
+  end
+
+  def game_over
+    # binding.pry
+  end
+
+  def you_win
+    # binding.pry
+  end
 
   def computer_turn
     input = @cpu.select_move
     @board.insert_p2_hit(input)
-    game_play
+    player_ship_sinker(input)
   end
 
   def ship_deintersector(input1, input2)
@@ -191,8 +266,8 @@ class Menu
   end
 
 end
-game = Menu.new
-cpu = Computer.new
-# @board = Board.new
-# binding.pry
-game.game_start
+# game = Menu.new
+# cpu = Computer.new
+# # @board = Board.new
+# # # binding.pry
+# game.game_start
