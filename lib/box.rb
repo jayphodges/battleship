@@ -13,7 +13,7 @@ class Box
 
   end
 
-  def icon?
+  def map1
     if @p1_hit && @p2_ship
       "H"
       # "\u26DD".encode('utf-8')
@@ -24,7 +24,7 @@ class Box
     end
   end
 
-  def p1_map
+  def map2
     if @p1_ship && @p2_hit
       # U+20E3 big square
       # U+220E

@@ -31,15 +31,6 @@ class Board
     @d3 = Box.new
     @d4 = Box.new
     @ship = Ship.new
-    # @a1.p1_hit = true
-    # @a2.p1_hit = true
-    # @a2.p2_ship = true
-    # @a3.p1_hit = true
-    # @a4.p1_hit = true
-  end
-
-  def a1
-    @a1
   end
 
   def return_board
@@ -75,15 +66,6 @@ class Board
     puts " D " + @d1.p1_map + " " + @d2.p1_map + " " + @d3.p1_map + " " + @d4.p1_map
     border
   end
-  # def print_boards
-  #   border
-  #   header
-  #   puts " A " + @a1.icon? + " " + @a2.icon? + " " + @a3.icon? + " " + @a4.icon? + "           " +
-  #   puts " B " + @b1.icon? + " " + @b2.icon? + " " + @b3.icon? + " " + @b4.icon? + "           " +
-  #   puts " C " + @c1.icon? + " " + @c2.icon? + " " + @c3.icon? + " " + @c4.icon? + "           " +
-  #   puts " D " + @d1.icon? + " " + @d2.icon? + " " + @d3.icon? + " " + @d4.icon? + "           " +
-  #   border
-  # end
 
   def insert_p1_hit(input)
     at_input = instance_variable_get("@#{input}")
@@ -114,6 +96,5 @@ class Board
     at_input = instance_variable_get("@#{input}")
     !at_input.p1_hit && @ship.valid_letter(input[0]) && @ship.valid_number(input[1])
   end
-
 
 end
